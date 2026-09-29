@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Francisco Gonzalez | Senior Software Engineer</title>
+<meta name="description" content="Senior Software Engineer and Full Stack Developer specialized in .NET Core, C# and React." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          display: ['"Chakra Petch"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          body: ['"IBM Plex Sans"', 'ui-sans-serif', 'system-ui', 'sans-serif']
+        },
+        colors: {
+          base: 'rgb(var(--base) / <alpha-value>)',
+          panel: 'rgb(var(--panel) / <alpha-value>)',
+          ink: 'rgb(var(--ink) / <alpha-value>)',
+          mute: 'rgb(var(--mute) / <alpha-value>)',
+          glow: 'rgb(var(--glow) / <alpha-value>)',
+          volt: 'rgb(var(--volt) / <alpha-value>)',
+          flare: 'rgb(var(--flare) / <alpha-value>)'
+        }
+      }
+    }
+  };
+</script>
+<style>
+  /* ---------- Theme tokens ---------- */
+  :root {
+    --base: 234 243 251;
+    --panel: 255 255 255;
+    --ink: 11 37 64;
+    --mute: 62 88 114;
+    --glow: 0 150 199;
+    --volt: 30 86 220;
+    --flare: 200 76 4;
+    --edge: rgb(255 255 255 / .85);
+    --bar-a: rgb(0 122 168);
+    --bar-b: rgb(30 86 220);
+    --bar-text: #fff;
+    --sel-a: rgb(176 60 0);
+    --sel-b: rgb(214 88 8);
+    --sel-glow: rgb(255 122 26 / .55);
+    --bar-glow: rgb(0 170 220 / .45);
+    --blob-1: rgb(0 200 240 / .35);
+    --blob-2: rgb(70 120 255 / .28);
+    --blob-3: rgb(255 150 60 / .18);
+    --btn-a: rgb(10 118 172);
+    --btn-b: rgb(30 86 220);
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --base: 8 20 38; --panel: 22 48 84; --ink: 226 240 252; --mute: 148 176 204;
+      --glow: 34 211 238; --volt: 96 165 250; --flare: 255 138 43;
+      --edge: rgb(34 211 238 / .3);
+      --bar-a: rgb(34 211 238); --bar-b: rgb(96 165 250); --bar-text: #081426;
+      --sel-a: rgb(255 138 43); --sel-b: rgb(255 184 90); --sel-glow: rgb(255 138 43 / .6);
+      --bar-glow: rgb(34 211 238 / .5);
+      --blob-1: rgb(34 211 238 / .16); --blob-2: rgb(96 120 255 / .18); --blob-3: rgb(255 138 43 / .1);
+      --btn-a: rgb(34 211 238); --btn-b: rgb(96 165 250);
+    }
+  }
+  :root[data-theme="dark"] {
+    --base: 8 20 38; --panel: 22 48 84; --ink: 226 240 252; --mute: 148 176 204;
+    --glow: 34 211 238; --volt: 96 165 250; --flare: 255 138 43;
+    --edge: rgb(34 211 238 / .3);
+    --bar-a: rgb(34 211 238); --bar-b: rgb(96 165 250); --bar-text: #081426;
+    --sel-a: rgb(255 138 43); --sel-b: rgb(255 184 90); --sel-glow: rgb(255 138 43 / .6);
+    --bar-glow: rgb(34 211 238 / .5);
+    --blob-1: rgb(34 211 238 / .16); --blob-2: rgb(96 120 255 / .18); --blob-3: rgb(255 138 43 / .1);
+    --btn-a: rgb(34 211 238); --btn-b: rgb(96 165 250);
+  }
+  html { height: 100%; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 84px); scroll-behavior: smooth; }
+  body { min-height: 100%; background-color: rgb(var(--base)); color: rgb(var(--ink)); font-family: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif; }
+
+  /* Ambient light behind the glass */
+  body::before {
+    content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(45rem 30rem at 8% 6%, var(--blob-1), transparent 60%),
+      radial-gradient(40rem 30rem at 95% 30%, var(--blob-2), transparent 60%),
+      radial-gradient(38rem 26rem at 30% 100%, var(--blob-3), transparent 60%);
+  }
+
+  /* ---------- Glass ---------- */
+  .glass {
+    background: rgb(var(--panel) / .5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.4);
+    backdrop-filter: blur(16px) saturate(1.4);
+    border: 1px solid var(--edge);
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / .55), 0 18px 40px -22px rgb(var(--volt) / .45);
+  }
+  .glass-soft {
+    background: rgb(var(--panel) / .4);
+    border: 1px solid var(--edge);
+    border-radius: 12px;
+  }
+  /* Tron-style corner brackets */
+  .brackets { position: relative; }
+  .brackets::before, .brackets::after {
+    content: ""; position: absolute; width: 22px; height: 22px; pointer-events: none;
+    border: 2px solid rgb(var(--glow)); filter: drop-shadow(0 0 5px rgb(var(--glow) / .8));
+  }
+  .brackets::before { top: -1px; left: -1px; border-right: 0; border-bottom: 0; border-top-left-radius: 18px; }
+  .brackets::after { bottom: -1px; right: -1px; border-left: 0; border-top: 0; border-bottom-right-radius: 18px; }
+
+  /* Hero grid floor */
+  .grid-floor {
+    position: absolute; left: -20%; right: -20%; bottom: 0; height: 70%;
+    background-image:
+      linear-gradient(rgb(var(--glow) / .38) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--glow) / .38) 1px, transparent 1px);
+    background-size: 64px 64px;
+    transform: perspective(520px) rotateX(62deg);
+    transform-origin: 50% 100%;
+    -webkit-mask-image: linear-gradient(to top, #000 5%, transparent 85%);
+    mask-image: linear-gradient(to top, #000 5%, transparent 85%);
+    pointer-events: none;
+  }
+
+  /* ---------- Timeline ---------- */
+  .bar {
+    position: absolute; top: calc(50% - 14px); height: 28px; border-radius: 999px;
+    background: linear-gradient(90deg, var(--bar-a), var(--bar-b));
+    box-shadow: 0 0 14px var(--bar-glow), inset 0 1px 0 rgb(255 255 255 / .35);
+    color: var(--bar-text); font: 600 12px/28px 'Chakra Petch', sans-serif; padding: 0 12px;
+    white-space: nowrap; overflow: hidden; min-width: 8px;
+    transform-origin: left center; animation: draw .9s cubic-bezier(.2,.8,.2,1) both;
+    transition: box-shadow .2s, background .2s;
+  }
+  .row[aria-pressed="true"] .bar {
+    background: linear-gradient(90deg, var(--sel-a), var(--sel-b));
+    box-shadow: 0 0 18px var(--sel-glow), inset 0 1px 0 rgb(255 255 255 / .35);
+  }
+  .row { border: 1px solid transparent; border-radius: 14px; transition: background .15s, border-color .15s; }
+  .row:hover { background: rgb(var(--panel) / .35); }
+  .row[aria-pressed="true"] { background: rgb(var(--panel) / .6); border-color: rgb(var(--flare) / .55); }
+  @keyframes draw { from { transform: scaleX(0); opacity: .2; } to { transform: scaleX(1); opacity: 1; } }
+  .tick { position: absolute; top: 0; bottom: 0; width: 1px; background: rgb(var(--glow) / .22); }
+  .fade-in { animation: fade .28s ease both; }
+  @keyframes fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+  /* ---------- Bits ---------- */
+  .pip { width: 16px; height: 6px; border-radius: 3px; background: rgb(var(--mute) / .25); }
+  .pip.on { background: linear-gradient(90deg, rgb(var(--glow)), rgb(var(--volt))); box-shadow: 0 0 6px rgb(var(--glow) / .6); }
+  .diamond li { position: relative; padding-left: 20px; }
+  .diamond li::before {
+    content: ""; position: absolute; left: 2px; top: .62em; width: 7px; height: 7px;
+    transform: rotate(45deg); background: rgb(var(--glow)); box-shadow: 0 0 6px rgb(var(--glow) / .7);
+  }
+  .chip {
+    display: inline-block; padding: 3px 10px; border-radius: 999px; font-size: 12.5px;
+    background: rgb(var(--panel) / .55); border: 1px solid rgb(var(--glow) / .35); color: rgb(var(--ink));
+  }
+  .btn-primary {
+    background: linear-gradient(90deg, var(--btn-a), var(--btn-b)); color: var(--bar-text);
+    box-shadow: 0 8px 24px -8px rgb(var(--volt) / .7), inset 0 1px 0 rgb(255 255 255 / .35);
+  }
+  .seg[aria-pressed="true"], .seg[aria-selected="true"] {
+    background: rgb(var(--panel) / .85); color: rgb(var(--ink)); box-shadow: 0 0 0 1px rgb(var(--glow) / .6), 0 0 14px rgb(var(--glow) / .35);
+  }
+  :focus-visible { outline: 2px solid rgb(var(--volt)); outline-offset: 2px; border-radius: 10px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .bar, .fade-in { animation: none; }
+  }
+</style>
+</head>
+
+<body class="font-body antialiased">
+
+<!-- ================= NAV ================= -->
+<header class="sticky z-30 px-3 pt-3 sm:px-6" style="top: env(safe-area-inset-top, 0px);">
+  <nav class="glass mx-auto flex max-w-6xl items-center justify-between px-4 py-2.5" aria-label="Main">
+    <a href="#top" class="flex items-center gap-2.5 font-display text-lg font-bold">
+      <span class="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-glow to-volt text-sm text-white" style="color: var(--bar-text)">FG</span>
+      <span class="hidden sm:inline">Francisco Gonzalez</span>
+    </a>
+    <ul class="flex items-center gap-1 text-sm font-medium">
+      <li><a class="rounded-lg px-3 py-1.5 hover:bg-panel/50" href="#timeline">Time tracker</a></li>
+      <li><a class="rounded-lg px-3 py-1.5 hover:bg-panel/50" href="#skills">Skills</a></li>
+      <li class="hidden sm:block"><a class="rounded-lg px-3 py-1.5 hover:bg-panel/50" href="#education">Education</a></li>
+      <li><a class="rounded-lg px-3 py-1.5 hover:bg-panel/50" href="#contact">Contact</a></li>
+      <li>
+        <button id="themeBtn" class="grid h-9 w-9 place-items-center rounded-lg hover:bg-panel/50" aria-label="Switch light or dark theme" title="Switch theme">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        </button>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="relative overflow-hidden">
+  <div class="grid-floor" aria-hidden="true"></div>
+  <div class="relative mx-auto grid max-w-6xl items-center gap-10 px-5 pb-24 pt-14 sm:px-6 lg:grid-cols-[1.25fr_1fr] lg:pb-32 lg:pt-24">
+    <div>
+      <p class="glass-soft inline-flex items-center gap-2 px-3 py-1.5 text-sm font-medium">
+        <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-flare opacity-60"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-flare"></span></span>
+        Open to new opportunities
+      </p>
+      <h1 class="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Francisco Gonzalez</h1>
+      <p class="mt-4 font-display text-xl font-medium text-volt sm:text-2xl">Senior Software Engineer, Full Stack Developer &amp; Consultant</p>
+      <p class="mt-5 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
+        I design, scale and deliver enterprise web applications with .NET Core, C# and React. I also automate CI/CD pipelines, lead technical migrations and fix critical production issues with agile, multicultural teams.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#timeline" class="btn-primary rounded-xl px-5 py-3 font-display font-semibold">See my career timeline</a>
+        <!-- Replace href with the real path of your PDF resume -->
+        <a href="./Resume_Francisco_Gonzalez_2026.pdf" class="glass rounded-xl px-5 py-3 font-display font-semibold" style="border-radius: 12px">Download resume</a>
+      </div>
+    </div>
+
+    <aside class="glass brackets p-6" aria-label="Profile summary">
+      <div class="flex items-center gap-4">
+        <div class="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-glow to-volt font-display text-2xl font-bold" style="color: var(--bar-text); box-shadow: 0 0 22px var(--bar-glow)">FG</div>
+        <div>
+          <p class="font-display text-lg font-semibold leading-tight">Sr Consultant</p>
+          <p class="text-sm text-mute">Apex Systems, Apr 2025 to Aug 2026</p>
+        </div>
+      </div>
+      <dl class="mt-6 space-y-4 text-sm">
+        <div>
+          <dt class="font-medium text-mute">Building software since</dt>
+          <dd class="font-display font-semibold">2003, teaching technology since 1998</dd>
+        </div>
+        <div>
+          <dt class="font-medium text-mute">Best at</dt>
+          <dd class="font-display font-semibold">APIs, data access, CI/CD and legacy migrations</dd>
+        </div>
+        <div>
+          <dt class="mb-2 font-medium text-mute">Core stack</dt>
+          <dd class="flex flex-wrap gap-2">
+            <span class="chip">.NET Core</span><span class="chip">C#</span><span class="chip">React</span><span class="chip">TypeScript</span>
+            <span class="chip">SQL Server</span><span class="chip">Entity Framework</span><span class="chip">Azure DevOps</span><span class="chip">GitHub Actions</span>
+          </dd>
+        </div>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= TIME TRACKER ================= -->
+<section id="timeline" class="mx-auto max-w-6xl px-5 py-16 sm:px-6">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <h2 class="font-display text-3xl font-bold sm:text-4xl">Career time tracker</h2>
+      <p class="mt-2 max-w-xl text-mute">Every bar is a company. Select one to see my role, stack and what I delivered there.</p>
+    </div>
+    <div class="glass-soft flex p-1 text-sm font-medium" role="group" aria-label="Timeline range">
+      <button class="seg rounded-lg px-3.5 py-1.5" data-range="all" aria-pressed="true">Full career</button>
+      <button class="seg rounded-lg px-3.5 py-1.5" data-range="recent" aria-pressed="false">Since 2019</button>
+    </div>
+  </div>
+
+  <div class="glass brackets mt-6 p-3 sm:p-5">
+    <div class="overflow-x-auto">
+      <div id="chart" class="min-w-[760px]"></div>
+    </div>
+  </div>
+
+  <div id="detail" class="glass mt-5 p-5 sm:p-7" aria-live="polite"></div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<section id="skills" class="mx-auto max-w-6xl px-5 py-16 sm:px-6">
+  <div class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <h2 class="font-display text-3xl font-bold sm:text-4xl">Skills</h2>
+      <p class="mt-2 max-w-xl text-mute">Technical skills are broken down by specialization, with an honest level for each one.</p>
+    </div>
+    <div class="glass-soft flex p-1 text-sm font-medium" role="tablist" aria-label="Skill type">
+      <button class="seg rounded-lg px-3.5 py-1.5" role="tab" data-tab="tech" aria-selected="true">Technical</button>
+      <button class="seg rounded-lg px-3.5 py-1.5" role="tab" data-tab="soft" aria-selected="false">Soft skills</button>
+    </div>
+  </div>
+
+  <div id="tech" role="tabpanel">
+    <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-mute" aria-label="Level legend">
+      <span class="flex items-center gap-2"><span class="flex gap-1"><i class="pip on"></i><i class="pip on"></i><i class="pip on"></i></span> Advanced</span>
+      <span class="flex items-center gap-2"><span class="flex gap-1"><i class="pip on"></i><i class="pip on"></i><i class="pip"></i></span> Medium</span>
+      <span class="flex items-center gap-2"><span class="flex gap-1"><i class="pip on"></i><i class="pip"></i><i class="pip"></i></span> Basic</span>
+    </div>
+    <div id="techGrid" class="mt-5 grid gap-5 md:grid-cols-2"></div>
+  </div>
+
+  <div id="soft" role="tabpanel" hidden>
+    <div id="softGrid" class="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
+  </div>
+</section>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education" class="mx-auto max-w-6xl px-5 py-16 sm:px-6">
+  <h2 class="font-display text-3xl font-bold sm:text-4xl">Education and certifications</h2>
+  <div class="mt-6 grid gap-5 md:grid-cols-2">
+    <div class="glass p-6">
+      <h3 class="font-display text-lg font-semibold">Degrees</h3>
+      <ul class="diamond mt-4 space-y-4">
+        <li><p class="font-medium">Bachelor's degree in Industrial Engineering</p><p class="text-sm text-mute">CETI, 1998 to 2001</p></li>
+        <li><p class="font-medium">Bachelor's degree as Electrician</p><p class="text-sm text-mute">CETI, 1994 to 1998</p></li>
+      </ul>
+    </div>
+    <div class="glass p-6">
+      <h3 class="font-display text-lg font-semibold">Microsoft certifications</h3>
+      <ul class="diamond mt-4 space-y-4">
+        <li><p class="font-medium">Certified Technology Specialist</p><p class="text-sm text-mute">.NET Framework 4, Web Applications</p></li>
+        <li><p class="font-medium">Certified Professional</p><p class="text-sm text-mute">Programming in HTML with JavaScript and CSS3</p></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="mx-auto max-w-6xl px-5 pb-24 pt-16 sm:px-6">
+  <div class="glass brackets p-8 text-center sm:p-12">
+    <h2 class="font-display text-3xl font-bold sm:text-4xl">Let's build something solid</h2>
+    <p class="mx-auto mt-3 max-w-lg text-mute">I'm open to senior full stack and .NET opportunities. Reach me on any of these channels.</p>
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      <!-- Replace the three hrefs with your real links -->
+      <a href="https://www.linkedin.com/in/jfrancisco-gonzalez" class="btn-primary rounded-xl px-5 py-3 font-display font-semibold">LinkedIn</a>
+      <a href="https://github.com/apocmaster" class="glass rounded-xl px-5 py-3 font-display font-semibold" style="border-radius: 12px">GitHub</a>
+      <a href="mailto:paco_cet@hotmail.com" class="glass rounded-xl px-5 py-3 font-display font-semibold" style="border-radius: 12px">Email</a>
+    </div>
+  </div>
+  <p class="mt-8 text-center text-sm text-mute">Francisco Gonzalez, 2026</p>
+</section>
+
+</main>
+
+<script>
+/* =====================================================
+   DATA  (in React this becomes /src/data/*.ts)
+   ===================================================== */
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const JOBS = [
+  { id: 'apex', company: 'Apex Systems', role: 'Sr Consultant', s: [2025, 4], e: [2026, 8],
+    stack: ['Angular', '.NET Core API', 'MVC / Razor', 'Fast Endpoints', 'SQL Server', 'Entity Framework Core', 'LINQ', 'xUnit', 'Azure DevOps', 'GitHub Actions', 'TFS', 'Postman', 'GitHub Copilot'],
+    points: [
+      'Led backend and frontend enhancements, delivering APIs and business features with Fast Endpoints and Entity Framework Core.',
+      'Configured and optimized CI/CD pipelines in GitHub Actions and Azure DevOps, reducing deployment risk and release cycles.',
+      'Stabilized and restructured xUnit unit and integration test suites so they run reliably locally and in the pipeline.',
+      'Resolved high-priority bugs and UI issues under pressure, keeping operations stable.',
+      'Mentored junior and mid-level developers on engineering standards, testing and workflow practices.'
+    ] },
+  { id: 'nexaminds', company: 'Nexaminds', role: 'Software Engineer', s: [2024, 11], e: [2025, 3],
+    stack: ['.NET Core Web API', 'React', 'Docker', 'Git', 'Azure DevOps', 'SQL Server', 'Entity Framework', 'Postman'],
+    points: [
+      'Led the migration of a legacy Windows Forms application to a modern, cloud-based architecture built for scalability and maintainability.',
+      'Delivered new front-end and back-end features aligned with evolving business requirements.',
+      'Found and fixed critical production defects, reducing downtime and improving stability.',
+      'Strengthened collaboration between development and QA with structured testing and defect management.'
+    ] },
+  { id: 'epam', company: 'EPAM', role: 'Software Engineer', s: [2019, 3], e: [2024, 6],
+    stack: ['.NET Windows Forms', '.NET Core Web API', 'React', 'Oracle SQL Developer', 'ServiceNow', 'Git', 'Entity Framework', 'Postman'],
+    points: [
+      'Provided technical support and maintenance for complex Pharma and Legal systems, meeting high SLA targets.',
+      'Coordinated cross-functional IT teams during critical incidents for fast recovery and minimal business impact.',
+      'Optimized backend database workflows with advanced SQL scripting, improving processing and efficiency.',
+      'Documented architectural best practices and mentored new team members through onboarding.'
+    ] },
+  { id: 'sanmina', company: 'Sanmina-SCI', role: 'Web Developer', s: [2003, 11], e: [2019, 3],
+    stack: ['ASP', 'ASP.NET', 'VSTO', 'SQL Server', 'PostgreSQL', 'SVN Tortoise', 'Excel Macros', 'Entity Framework', 'LINQ'],
+    points: [
+      'Designed and built enterprise solutions for global supply chain operations, focused on automation and workflow optimization.',
+      'Developed automated reporting workflows and advanced Excel macros that saved the department significant time and improved accuracy.',
+      'Handled cross-application support and systematic defect tracking to keep the business running.'
+    ] },
+  { id: 'ceti', company: 'CETI', role: 'Professor', s: [1998, 4], e: [2003, 11],
+    stack: ['Microsoft Office', 'Linux', 'ASP', 'MS Access', 'C++'],
+    points: [
+      'Taught engineering and technology courses and built laboratory practices to develop strong technical foundations.',
+      'Coordinated academics, guided student projects and supported departmental administration.'
+    ] }
+];
+
+/* Levels: A = Advanced, M = Medium, B = Basic  (proposal: adjust to your real level) */
+const TECH = [
+  { title: 'Entity Framework Core', blurb: 'Data access for .NET applications', items: [
+    ['Migrations', 'A'], ['Dataset design', 'A'], ['Entities design', 'A'], ['Debugging', 'M'], ['LINQ', 'M'] ] },
+  { title: 'C# and .NET', blurb: 'Backend, APIs and desktop', items: [
+    ['.NET Core Web API', 'A'], ['Fast Endpoints', 'A'], ['ASP.NET MVC and Razor', 'A'], ['Legacy Windows Forms migration', 'A'], ['WPF and XAML', 'M'] ] },
+  { title: 'React and TypeScript', blurb: 'Front-end delivery', items: [
+    ['Consuming REST APIs', 'A'], ['React components', 'M'], ['TypeScript', 'M'], ['Angular', 'M'] ] },
+  { title: 'Databases and SQL', blurb: 'Relational and document stores', items: [
+    ['SQL scripting and optimization', 'A'], ['MS SQL Server', 'A'], ['Oracle SQL Developer', 'M'], ['PostgreSQL', 'M'], ['SQLite and MongoDB', 'B'] ] },
+  { title: 'DevOps and CI/CD', blurb: 'Build, release and source control', items: [
+    ['GitHub Actions pipelines', 'A'], ['Azure DevOps pipelines', 'A'], ['Git, Bitbucket and TFS', 'A'], ['Docker', 'M'] ] },
+  { title: 'Testing and quality', blurb: 'Reliable code in every environment', items: [
+    ['xUnit unit testing', 'A'], ['Integration testing', 'A'], ['Code reviews', 'A'], ['Test automation', 'M'], ['Performance optimization', 'M'] ] },
+  { title: 'Legacy and Office automation', blurb: 'Keeping older systems productive', items: [
+    ['VSTO', 'A'], ['VBA and Excel macros', 'A'], ['Classic ASP', 'M'], ['VB6', 'M'] ] },
+  { title: 'Agile and tooling', blurb: 'Team workflow and AI assistance', items: [
+    ['Agile / Scrum', 'A'], ['Jira, Confluence and ServiceNow', 'A'], ['Postman and Swagger', 'A'], ['GitHub Copilot and AI assistants', 'M'] ] }
+];
+
+const SOFT = [
+  { title: 'Mentoring', text: 'Guided junior and mid-level developers on standards, testing and workflow.', where: 'Apex Systems' },
+  { title: 'Incident leadership', text: 'Coordinated cross-functional IT teams during critical incidents to recover quickly.', where: 'EPAM' },
+  { title: 'Calm under pressure', text: 'Resolved high-priority production bugs while keeping systems stable.', where: 'Apex Systems, Nexaminds' },
+  { title: 'Multicultural teamwork', text: 'Worked in agile teams spread across countries and cultures.', where: 'EPAM, Apex Systems' },
+  { title: 'Teaching and communication', text: 'Taught engineering and technology courses and guided student projects.', where: 'CETI' },
+  { title: 'Documentation', text: 'Wrote architecture best practices that shortened onboarding for new teammates.', where: 'EPAM' }
+];
+
+const LEVEL = { A: [3, 'Advanced'], M: [2, 'Medium'], B: [1, 'Basic'] };
+
+/* =====================================================
+   HELPERS
+   ===================================================== */
+const frac = ([y, m]) => y + (m - 1) / 12;
+const endFrac = ([y, m]) => y + m / 12;
+const monthsBetween = (s, e) => (e[0] * 12 + e[1]) - (s[0] * 12 + s[1]) + 1;
+const fmtDate = ([y, m]) => `${MONTHS[m - 1]} ${y}`;
+const fmtDur = (n) => {
+  const y = Math.floor(n / 12), m = n % 12, out = [];
+  if (y) out.push(`${y} ${y === 1 ? 'yr' : 'yrs'}`);
+  if (m) out.push(`${m} ${m === 1 ? 'mo' : 'mos'}`);
+  return out.join(' ');
+};
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
+
+/* =====================================================
+   TIME TRACKER
+   ===================================================== */
+let range = 'all';
+let selected = JOBS[0].id;
+
+function renderChart() {
+  const min = range === 'all' ? 1998 : 2019;
+  const max = 2026.75;
+  const span = max - min;
+  const ticks = range === 'all' ? [2000, 2005, 2010, 2015, 2020, 2025] : [2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026];
+  const jobs = JOBS.filter(j => endFrac(j.e) > min + 0.5);
+  const pct = (v) => ((v - min) / span) * 100;
+
+  const tickLines = ticks.map(t => `<span class="tick" style="left:${pct(t)}%"></span>`).join('');
+  const axis = ticks.map(t =>
+    `<span class="absolute -translate-x-1/2 font-display text-xs text-mute" style="left:${pct(t)}%">${t}</span>`).join('');
+
+  const rows = jobs.map((j, i) => {
+    const left = pct(Math.max(frac(j.s), min));
+    const width = pct(Math.min(endFrac(j.e), max)) - left;
+    const months = monthsBetween(j.s, j.e);
+    return `
+      <button class="row flex w-full items-stretch gap-3 p-1.5 text-left" data-id="${j.id}" aria-pressed="${j.id === selected}">
+        <div class="w-36 shrink-0 py-1 sm:w-44">
+          <div class="font-display font-semibold leading-tight">${j.company}</div>
+          <div class="text-xs text-mute">${j.role}</div>
+          <div class="text-xs text-mute">${fmtDate(j.s)} to ${fmtDate(j.e)}</div>
+        </div>
+        <div class="relative min-h-[56px] flex-1">
+          ${tickLines}
+          <span class="bar" style="left:${left}%;width:${width}%;animation-delay:${i * 90}ms">${fmtDur(months)}</span>
+        </div>
+      </button>`;
+  }).join('');
+
+  $('#chart').innerHTML = `
+    <div class="flex gap-3 px-1.5 pb-2">
+      <div class="w-36 shrink-0 sm:w-44"></div>
+      <div class="relative h-5 flex-1">${axis}</div>
+    </div>
+    <div class="space-y-1">${rows}</div>`;
+
+  $$('#chart .row').forEach(b => b.addEventListener('click', () => { selected = b.dataset.id; renderChart(); renderDetail(); }));
+}
+
+function renderDetail() {
+  const j = JOBS.find(x => x.id === selected);
+  const months = monthsBetween(j.s, j.e);
+  $('#detail').innerHTML = `
+    <div class="fade-in grid gap-8 lg:grid-cols-[1fr_1.4fr]">
+      <div>
+        <p class="font-medium text-mute">${fmtDate(j.s)} to ${fmtDate(j.e)}, ${fmtDur(months)}</p>
+        <h3 class="mt-1 font-display text-2xl font-bold sm:text-3xl">${j.company}</h3>
+        <p class="font-display text-lg font-medium text-volt">${j.role}</p>
+        <p class="mt-5 mb-2 text-sm font-medium text-mute">Technical environment</p>
+        <div class="flex flex-wrap gap-2">${j.stack.map(s => `<span class="chip">${s}</span>`).join('')}</div>
+      </div>
+      <div>
+        <p class="mb-3 font-display text-lg font-semibold">Key contributions</p>
+        <ul class="diamond space-y-3 leading-relaxed">${j.points.map(p => `<li>${p}</li>`).join('')}</ul>
+      </div>
+    </div>`;
+}
+
+$$('[data-range]').forEach(b => b.addEventListener('click', () => {
+  range = b.dataset.range;
+  $$('[data-range]').forEach(x => x.setAttribute('aria-pressed', x === b));
+  const visible = JOBS.filter(j => endFrac(j.e) > (range === 'all' ? 0 : 2019.5));
+  if (!visible.find(j => j.id === selected)) selected = visible[0].id;
+  renderChart(); renderDetail();
+}));
+
+/* =====================================================
+   SKILLS
+   ===================================================== */
+function pips(n) {
+  return `<span class="flex gap-1" aria-hidden="true">${[1, 2, 3].map(i => `<i class="pip ${i <= n ? 'on' : ''}"></i>`).join('')}</span>`;
+}
+
+function renderSkills() {
+  $('#techGrid').innerHTML = TECH.map(g => `
+    <article class="glass p-6">
+      <h3 class="font-display text-xl font-semibold">${g.title}</h3>
+      <p class="text-sm text-mute">${g.blurb}</p>
+      <ul class="mt-4 divide-y divide-ink/10">
+        ${g.items.map(([name, lv]) => `
+          <li class="flex items-center justify-between gap-4 py-2.5">
+            <span>${name}</span>
+            <span class="flex shrink-0 items-center gap-2.5 text-sm text-mute">${LEVEL[lv][1]} ${pips(LEVEL[lv][0])}</span>
+          </li>`).join('')}
+      </ul>
+    </article>`).join('');
+
+  $('#softGrid').innerHTML = SOFT.map(s => `
+    <article class="glass p-6">
+      <h3 class="font-display text-xl font-semibold">${s.title}</h3>
+      <p class="mt-2 leading-relaxed text-mute">${s.text}</p>
+      <p class="mt-4"><span class="chip">${s.where}</span></p>
+    </article>`).join('');
+}
+
+$$('[data-tab]').forEach(b => b.addEventListener('click', () => {
+  $$('[data-tab]').forEach(x => x.setAttribute('aria-selected', x === b));
+  $('#tech').hidden = b.dataset.tab !== 'tech';
+  $('#soft').hidden = b.dataset.tab !== 'soft';
+}));
+
+/* =====================================================
+   THEME
+   ===================================================== */
+(function theme() {
+  const root = document.documentElement;
+  try { const t = localStorage.getItem('theme'); if (t) root.setAttribute('data-theme', t); } catch (e) {}
+  $('#themeBtn').addEventListener('click', () => {
+    const dark = root.getAttribute('data-theme')
+      ? root.getAttribute('data-theme') === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    const next = dark ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+})();
+
+renderChart();
+renderDetail();
+renderSkills();
+</script>
+</body>
+</html>
