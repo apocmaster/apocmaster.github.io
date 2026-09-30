@@ -211,7 +211,10 @@
         <span class="relative flex h-2.5 w-2.5"><span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-flare opacity-60"></span><span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-flare"></span></span>
         Open to new opportunities
       </p>
-      <h1 class="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Francisco Gonzalez</h1>
+      <div class="flex items-center gap-5">
+          <img src="./frank.jpg" alt="Francisco Gonzalez" class="m-4 h-20 w-20 rounded-2xl object-cover sm:h-24 sm:w-24 md:h-32 md:w-32" /> 
+          <h1 class="mt-5 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">Francisco Gonzalez</h1>
+      </div>
       <p class="mt-4 font-display text-xl font-medium text-volt sm:text-2xl">Senior Software Engineer, Full Stack Developer &amp; Consultant</p>
       <p class="mt-5 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
         I design, scale and deliver enterprise web applications with .NET Core, C# and React. I also automate CI/CD pipelines, lead technical migrations and fix critical production issues with agile, multicultural teams.
@@ -303,7 +306,7 @@
 
 <!-- ================= EDUCATION ================= -->
 <section id="education" class="mx-auto max-w-6xl px-5 py-16 sm:px-6">
-  <h2 class="font-display text-3xl font-bold sm:text-4xl">Education and certifications</h2>
+  <h2 class="font-display text-3xl font-bold sm:text-4xl">Education, certifications, and courses</h2>
   <div class="mt-6 grid gap-5 md:grid-cols-2">
     <div class="glass p-6">
       <h3 class="font-display text-lg font-semibold">Degrees</h3>
@@ -317,6 +320,16 @@
       <ul class="diamond mt-4 space-y-4">
         <li><p class="font-medium">Certified Technology Specialist</p><p class="text-sm text-mute">.NET Framework 4, Web Applications</p></li>
         <li><p class="font-medium">Certified Professional</p><p class="text-sm text-mute">Programming in HTML with JavaScript and CSS3</p></li>
+      </ul>
+    </div>
+  </div>
+  <div class="mt-6 grid gap-5 md:grid-cols-2">
+    <div class="glass p-6">
+      <h3 class="font-display text-lg font-semibold">Courses</h3>
+      <ul class="diamond mt-4 space-y-4">
+        <li><p class="font-medium">Design Patterns in C# and .NET</p><p class="text-sm text-mute">Udemy</p></li>
+        <li><p class="font-medium">Building Web APIs RESTful with ASP.NET Core 9</p><p class="text-sm text-mute">Udemy</p></li>
+        <li><p class="font-medium">React - The Complete Guide (incl. Next.js, Redux)</p><p class="text-sm text-mute">Udemy</p></li> 
       </ul>
     </div>
   </div>
@@ -388,22 +401,55 @@ const JOBS = [
 
 /* Levels: A = Advanced, M = Medium, B = Basic  (proposal: adjust to your real level) */
 const TECH = [
-  { title: 'Entity Framework Core', blurb: 'Data access for .NET applications', items: [
-    ['Migrations', 'A'], ['Dataset design', 'A'], ['Entities design', 'A'], ['Debugging', 'M'], ['LINQ', 'M'] ] },
-  { title: 'C# and .NET', blurb: 'Backend, APIs and desktop', items: [
-    ['.NET Core Web API', 'A'], ['Fast Endpoints', 'A'], ['ASP.NET MVC and Razor', 'A'], ['Legacy Windows Forms migration', 'A'], ['WPF and XAML', 'M'] ] },
-  { title: 'React and TypeScript', blurb: 'Front-end delivery', items: [
-    ['Consuming REST APIs', 'A'], ['React components', 'M'], ['TypeScript', 'M'], ['Angular', 'M'] ] },
-  { title: 'Databases and SQL', blurb: 'Relational and document stores', items: [
-    ['SQL scripting and optimization', 'A'], ['MS SQL Server', 'A'], ['Oracle SQL Developer', 'M'], ['PostgreSQL', 'M'], ['SQLite and MongoDB', 'B'] ] },
-  { title: 'DevOps and CI/CD', blurb: 'Build, release and source control', items: [
-    ['GitHub Actions pipelines', 'A'], ['Azure DevOps pipelines', 'A'], ['Git, Bitbucket and TFS', 'A'], ['Docker', 'M'] ] },
-  { title: 'Testing and quality', blurb: 'Reliable code in every environment', items: [
-    ['xUnit unit testing', 'A'], ['Integration testing', 'A'], ['Code reviews', 'A'], ['Test automation', 'M'], ['Performance optimization', 'M'] ] },
-  { title: 'Legacy and Office automation', blurb: 'Keeping older systems productive', items: [
-    ['VSTO', 'A'], ['VBA and Excel macros', 'A'], ['Classic ASP', 'M'], ['VB6', 'M'] ] },
-  { title: 'Agile and tooling', blurb: 'Team workflow and AI assistance', items: [
-    ['Agile / Scrum', 'A'], ['Jira, Confluence and ServiceNow', 'A'], ['Postman and Swagger', 'A'], ['GitHub Copilot and AI assistants', 'M'] ] }
+  { title: '.NET Core & C#', blurb: 'Developing .NET applications', items: [
+    ['C# Fundamentals (OOP, LINQ, Delegates, Exceptions)', 'A'], 
+    ['ASP.NET Core Web API / RESTful Services', 'M'], 
+    ['Entity Framework Core (Migrations, Performance, LINQ to Entities)', 'A'], 
+    ['Software Architecture (MVVM, MVC, MVP, Design Patterns)', 'M'], 
+    ['Dependency Injection and Middleware', 'M'] ] },
+  { title: 'Frontend (React / Angular / TypeScript)', blurb: 'Javascript frameworks', items: [
+    ['TypeScript (Advanced Types, Interfaces, Generics)', 'M'], 
+    ['React - Components, Props, and Reusability', 'A'], 
+    ['React Hooks (useState, useEffect, useCallback, useMemo, Custom Hooks)', 'M'], 
+    ['Global State Management (Context API, state ,Redux)', 'A'], 
+    ['Angular (Components, Directives, Services, RxJS)', 'B'],
+    ['Frontend Testing (React Testing Library, Jest)', 'M'] ] },
+  { title: 'Appian', blurb: 'Low-Code Platforms', items: [
+    ['Appian Process Modeling (Process Models, Sub-processes)', 'M'], 
+    ['Appian Interface Design (Sail, Component UI)', 'B'], 
+    ['Appian Data Management (CDT, Record Types, Data Store)', 'M'], 
+    ['Appian Integration (Web Services, REST API, Integration Objects)', 'B'] ] },
+  { title: 'Databases (SQL Server / Oracle / PostgreSQL)', blurb: 'Databases', items: [
+    ['Relational Schema Design and Normalization', 'A'], 
+    ['Query Optimization (Indexing, Execution Plans, Performance Tuning)', 'A'], 
+    ['Stored Procedures, Functions, and Triggers', 'A'], 
+    ['Database Security and User Management', 'M'], 
+    ['Data Migration and ETL Processes', 'M'],
+    ['Transactions and Concurrency Management', 'M'],
+    ['NoSQL Databases (MongoDB / SQLite)', 'B']] },
+  { title: 'DevOps & Cloud Tools', blurb: 'Cloud infrastructure and deployment', items: [
+    ['Git (Version Control, Branching, Conflict Resolution, GitFlow)', 'A'], 
+    ['CI/CD Pipelines (GitHub Actions, Azure DevOps)', 'M'], 
+    ['Containerization (Docker, Dockerfile, Docker Compose)', 'M'], 
+    ['Environment and Deployment Management (Feature Flags, Environments)', 'M'] ] },
+  { title: 'Testing & Code Quality', blurb: 'Ensuring code reliability and maintainability', items: [
+    ['Unit Testing (xUnit / NUnit)', 'M'], 
+    ['Mocking and Dependency Isolation (Moq / NSubstitute)', 'M'], 
+    ['Integration Testing', 'B'], 
+    ['Code Quality & Code Reviews (Static Analysis, Clean Code)', 'M'] ] },
+  { title: 'Tools and Legacy / Enterprise Ecosystem', blurb: 'Tools and legacy systems', items: [
+    ['APIs Documentation & Testing (Postman, Swagger / OpenAPI)', 'M'], 
+    ['Azure DevOps (Boards, Repos, Pipelines)', 'M'], 
+    ['Jira and Confluence', 'M'], 
+    ['ServiceNow', 'M'],
+    ['Legacy / Desktop Development (.NET Framework, Windows Forms, WPF, VSTO)', 'M'], 
+    ['Microsoft Office Automation (VBA, Excel Macros)', 'A'], 
+    ['Classic ASP and VB6', 'A'],
+    ['AI Development Tools (GitHub Copilot, Technical Prompting)', 'M'] ] }, 
+  { title: 'Agile and tooling', blurb: 'Team workflow', items: [
+    ['Agile / Scrum', 'A'], 
+    ['Jira, Confluence and ServiceNow', 'A'], 
+    ['Postman and Swagger', 'A'] ] }
 ];
 
 const SOFT = [
